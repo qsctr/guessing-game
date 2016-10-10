@@ -18,6 +18,6 @@ play (Leaf l) = yesOrNo ("Is it " ++ l) (return (Leaf l)) $ do
 
 yesOrNo :: String -> IO a -> IO a -> IO a
 yesOrNo question y n = putStrLn (question ++ "? (Y/N)") >> map toUpper <$> getLine >>= yn
-  where yn 'Y' = y
-        yn 'N' = n
+  where yn "Y" = y
+        yn "N" = n
         yn _ = putStrLn "You can only answer Y/N" >> yesOrNo question y n
