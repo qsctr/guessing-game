@@ -5,7 +5,7 @@ data Tree = Branch String Tree Tree | Leaf String deriving (Show, Read)
 main :: IO ()
 main = putStrLn "Enter file to read" >> getLine >>= run
   where run file = do
-          putStrLn "Think of a thing that is in the topic"
+          putStrLn "Think of a thing that is in the topic, then press enter" >> getLine
           readFile file >>= play . (read :: String -> Tree) >>= writeFile file . show
           yesOrNo "Play again" (run file) (return ())
 
